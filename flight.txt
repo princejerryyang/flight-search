@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机票查询</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+        }
+        .results {
+            margin-top: 15px;
+        }
+        .flight {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>机票查询</h2>
+        <input type="text" id="from" placeholder="出发地 (例如: Osaka)">
+        <input type="text" id="to" placeholder="目的地 (例如: Tokyo)">
+        <input type="date" id="date">
+        <button onclick="searchFlights()">查询</button>
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        function searchFlights() {
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const date = document.getElementById('date').value;
+
+            const flights = [
+                { flight: "JL123", time: "08:00", price: "¥15,000" },
+                { flight: "NH456", time: "12:30", price: "¥14,500" },
+                { flight: "MM789", time: "19:45", price: "¥9,800" }
+            ];
+
+            let resultHTML = `<h3>${from} → ${to} (${date})</h3>`;
+            flights.forEach(f => {
+                resultHTML += `<div class="flight">航班: ${f.flight} | 时间: ${f.time} | 价格: ${f.price}</div>`;
+            });
+
+            document.getElementById('results').innerHTML = resultHTML;
+        }
+    </script>
+</body>
+</html>
